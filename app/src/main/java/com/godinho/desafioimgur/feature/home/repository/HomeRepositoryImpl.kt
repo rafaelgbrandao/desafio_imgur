@@ -19,12 +19,18 @@ class HomeRepositoryImpl(private val homeRemoteSource: HomeRemoteSource) : HomeR
     private fun convertResponseIntoVO(response: ResponseObject?): List<String>? {
         val list = mutableListOf<String>()
         response?.data?.forEach{ galleries ->
-            galleries.images?.forEach { images ->
-                images.link?.let {
+            galleries.images
+                ?.filter { it.type == IMG_MINE_TYPE }
+                ?.forEach { images ->
+                    images.link?.let {
                     list.add(it)
                 }
             }
         }
         return list
+    }
+
+    companion object{
+        private const val IMG_MINE_TYPE = "image/jpeg"
     }
 }

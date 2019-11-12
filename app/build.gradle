@@ -51,6 +51,8 @@ dependencies {
     implementation generalDeps.gson_converter
     implementation generalDeps.okhttp3
     implementation generalDeps.retrofit
+    implementation generalDeps.glide
+    annotationProcessor generalDeps.glide_compiler
 
     testImplementation testDeps.junit
     testImplementation testDeps.koin_test
