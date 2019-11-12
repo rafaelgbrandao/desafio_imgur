@@ -7,6 +7,8 @@ import com.godinho.desafioimgur.feature.home.repository.HomeRepositoryImpl
 import com.godinho.desafioimgur.feature.home.presentation.HomeViewModel
 import com.godinho.desafioimgur.feature.home.repository.HomeRemoteSource
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -20,10 +22,16 @@ import java.util.concurrent.TimeUnit
 private const val OKHTTP_CLIENT = "OkHttpClient"
 private const val OKHTTP_INTERCEPTOR = "OkHttpInterceptor"
 private const val HEADER_KEY_AUTHORIZATION = "Authorization"
+private const val DISPATCHER = "dispatcher"
+private const val SUPERVISOR_JOB = "supervisorJob"
 
 val appModule = module {
 
-    viewModel { HomeViewModel(get()) }
+    viewModel { HomeViewModel(get(), get(named(DISPATCHER)), get(named(SUPERVISOR_JOB))) }
+
+    single(named(DISPATCHER)) { Dispatchers.IO }
+
+    single(named(SUPERVISOR_JOB)) { SupervisorJob() }
 
     single { HomeRepositoryImpl(get()) as HomeRepository }
 

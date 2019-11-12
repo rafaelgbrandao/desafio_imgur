@@ -4,14 +4,12 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.godinho.desafioimgur.feature.home.repository.HomeRepository
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.SupervisorJob
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 
-class HomeViewModel(private val homeRepository: HomeRepository): ViewModel() {
-
-    private val job = SupervisorJob()
+class HomeViewModel(
+    private val homeRepository: HomeRepository,
+    private val dispatcher: CoroutineDispatcher,
+    private val job: Job): ViewModel() {
 
     fun fetchListWithData(): LiveData<List<String>> = lvCatList
     private val lvCatList = MutableLiveData<List<String>>()
@@ -22,9 +20,9 @@ class HomeViewModel(private val homeRepository: HomeRepository): ViewModel() {
     fun showErrorDialog(): LiveData<Unit> = lvErrorOnRequest
     private val lvErrorOnRequest = MutableLiveData<Unit>()
 
-    fun onRequestCatList() {
-        CoroutineScope(Dispatchers.IO + job).launch {
-            homeRepository.getCatList()?.let {
+    fun onRequestContentList() {
+        CoroutineScope(dispatcher + job).launch {
+            homeRepository.getContentList()?.let {
                 when {
                     it.isEmpty() -> lvEmptyContentList.postValue(Unit)
                     else -> lvCatList.postValue(it)

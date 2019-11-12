@@ -72,7 +72,7 @@ class HomeRepositoryTest {
         } returns CompletableDeferred(emptyContentResponse)
 
         runBlocking {
-            val contentList = homeRepository.getCatList()
+            val contentList = homeRepository.getContentList()
             Assert.assertEquals(emptyList<String>(), contentList)
         }
     }
@@ -84,7 +84,7 @@ class HomeRepositoryTest {
         } returns CompletableDeferred(emptyGalleryResponse)
 
         runBlocking {
-            val contentList = homeRepository.getCatList()
+            val contentList = homeRepository.getContentList()
             Assert.assertEquals(emptyList<String>(), contentList)
         }
     }
@@ -96,7 +96,7 @@ class HomeRepositoryTest {
         } returns CompletableDeferred(emptyImageResponse)
 
         runBlocking {
-            val contentList = homeRepository.getCatList()
+            val contentList = homeRepository.getContentList()
             Assert.assertEquals(emptyList<String>(), contentList)
         }
     }
@@ -108,7 +108,7 @@ class HomeRepositoryTest {
         } throws Exception()
 
         runBlocking {
-            val contentList = homeRepository.getCatList()
+            val contentList = homeRepository.getContentList()
             Assert.assertEquals(null, contentList)
         }
     }
@@ -120,7 +120,7 @@ class HomeRepositoryTest {
         } returns CompletableDeferred(contentResponse)
 
         runBlocking {
-            val contentList = homeRepository.getCatList()
+            val contentList = homeRepository.getContentList()
 
             Assert.assertEquals(true, contentList?.size == 1)
             Assert.assertEquals(LINK, contentList?.get(0))

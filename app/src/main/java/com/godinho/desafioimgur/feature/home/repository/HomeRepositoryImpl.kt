@@ -6,7 +6,7 @@ import java.lang.Exception
 
 class HomeRepositoryImpl(private val homeRemoteSource: HomeRemoteSource) : HomeRepository {
 
-    override suspend fun getCatList() = withContext(Dispatchers.IO) {
+    override suspend fun getContentList() = withContext(Dispatchers.IO) {
         return@withContext try {
             val response = homeRemoteSource.getCatListAsync()?.await()
             convertResponseIntoVO(response)

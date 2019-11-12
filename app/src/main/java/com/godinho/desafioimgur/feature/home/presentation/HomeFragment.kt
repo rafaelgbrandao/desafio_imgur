@@ -29,7 +29,7 @@ class HomeFragment: Fragment() {
         super.onViewCreated(view, savedInstanceState)
         configureHomeRv()
         initObservers()
-        viewModel.onRequestCatList()
+        viewModel.onRequestContentList()
     }
 
     private fun configureHomeRv() {
