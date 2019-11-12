@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Desafio Imgur</string>
+    <string name="dialog_default_title">Ops</string>
+    <string name="dialog_request_error_message">Ocorreu um erro ao carregar os dados</string>
+    <string name="dialog_no_content_message">Nenhum contéudo disponível no momento</string>
+    <string name="dialog_btn_close">Fechar</string>
 </resources>

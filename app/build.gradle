@@ -15,6 +15,8 @@ android {
         versionCode app.versionCode
         versionName app.versionName
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        buildConfigField "String", "IMGUR_URL", "\" https://api.imgur.com/3/\""
+        buildConfigField "String", "IMGUR_CLIENT_ID", "\"Client-ID 1ceddedc03a5d71\""
     }
     buildTypes {
         release {
@@ -37,6 +39,7 @@ dependencies {
     implementation generalDeps.koin_viewmodel
     implementation generalDeps.kotlin
     implementation generalDeps.coroutines
+    implementation generalDeps.coroutines_adapter
     implementation generalDeps.lifecycle
     implementation generalDeps.appcompatx
     implementation generalDeps.corex
@@ -45,6 +48,9 @@ dependencies {
     implementation generalDeps.material
     implementation generalDeps.navigation
     implementation generalDeps.navigation_ui
+    implementation generalDeps.gson_converter
+    implementation generalDeps.okhttp3
+    implementation generalDeps.retrofit
 
     testImplementation testDeps.junit
     testImplementation testDeps.koin_test
