@@ -31,6 +31,6 @@ class HomeRepositoryImpl(private val homeRemoteSource: HomeRemoteSource) : HomeR
     }
 
     companion object{
-        private const val IMG_MINE_TYPE = "image/jpeg"
+        internal const val IMG_MINE_TYPE = "image/jpeg"
     }
 }

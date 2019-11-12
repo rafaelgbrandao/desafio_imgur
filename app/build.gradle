@@ -56,10 +56,11 @@ dependencies {
 
     testImplementation testDeps.junit
     testImplementation testDeps.koin_test
+    testImplementation testDeps.core_testing
+    testImplementation testDeps.mockk
+    testImplementation testDeps.mockk_instrumented
     androidTestImplementation testDeps.runner
     androidTestImplementation testDeps.junitx
     androidTestImplementation testDeps.espresso
     androidTestImplementation testDeps.rules
-    androidTestImplementation testDeps.mockk
-    androidTestImplementation testDeps.mockk_instrumented
 }
