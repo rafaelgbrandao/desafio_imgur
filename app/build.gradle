@@ -1,18 +1,19 @@
 apply plugin: 'com.android.application'
-
 apply plugin: 'kotlin-android'
-
 apply plugin: 'kotlin-android-extensions'
+apply from: "../dependencies.gradle"
+apply from: "../version.gradle"
 
 android {
-    compileSdkVersion 29
-    buildToolsVersion "29.0.2"
+    compileSdkVersion app.compileSdkVersion
+    buildToolsVersion app.buildToolsVersion
+
     defaultConfig {
         applicationId "com.godinho.desafioimgur"
-        minSdkVersion 15
-        targetSdkVersion 29
-        versionCode 1
-        versionName "1.0"
+        minSdkVersion app.minSdkVersion
+        targetSdkVersion app.targetSdkVersion
+        versionCode app.versionCode
+        versionName app.versionName
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -21,14 +22,36 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'androidx.core:core-ktx:1.1.0'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test:runner:1.2.0'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+    implementation generalDeps.koin_androidx
+    implementation generalDeps.koin_kotlin
+    implementation generalDeps.koin_viewmodel
+    implementation generalDeps.kotlin
+    implementation generalDeps.coroutines
+    implementation generalDeps.lifecycle
+    implementation generalDeps.appcompatx
+    implementation generalDeps.corex
+    implementation generalDeps.constraintlayout
+    implementation generalDeps.cardview
+    implementation generalDeps.material
+    implementation generalDeps.navigation
+    implementation generalDeps.navigation_ui
+
+    testImplementation testDeps.junit
+    testImplementation testDeps.koin_test
+    androidTestImplementation testDeps.runner
+    androidTestImplementation testDeps.junitx
+    androidTestImplementation testDeps.espresso
+    androidTestImplementation testDeps.rules
+    androidTestImplementation testDeps.mockk
+    androidTestImplementation testDeps.mockk_instrumented
 }
