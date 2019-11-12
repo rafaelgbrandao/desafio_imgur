@@ -33,13 +33,13 @@ class HomeFragment: Fragment() {
     }
 
     private fun configureHomeRv() {
-        homeRVCats.setHasFixedSize(true)
-        homeRVCats.layoutManager = GridLayoutManager(context, 3)
+        homeRVContent.setHasFixedSize(true)
+        homeRVContent.layoutManager = GridLayoutManager(context, 3)
     }
 
     private fun initObservers() {
         viewModel.fetchListWithData().observe(this) {
-            homeRVCats.adapter = HomeAdapter(it)
+            homeRVContent.adapter = HomeAdapter(it)
         }
 
         viewModel.showErrorDialog().observe(this) {
@@ -48,6 +48,23 @@ class HomeFragment: Fragment() {
 
         viewModel.showNoContentDialog().observe(this) {
             showDialog(message = R.string.dialog_no_content_message)
+        }
+
+        viewModel.showLoadingBar().observe(this) {
+            showLoading(it)
+        }
+    }
+
+    private fun showLoading(shouldShowLoading: Boolean) {
+        when {
+            shouldShowLoading -> {
+                homeCardView.visibility = View.VISIBLE
+                homeRVContent.visibility = View.GONE
+            }
+            else -> {
+                homeCardView.visibility = View.GONE
+                homeRVContent.visibility = View.VISIBLE
+            }
         }
     }
 

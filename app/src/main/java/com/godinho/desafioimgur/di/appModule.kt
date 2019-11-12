@@ -5,7 +5,7 @@ import com.godinho.desafioimgur.factory.ServiceFactory
 import com.godinho.desafioimgur.feature.home.repository.HomeRepository
 import com.godinho.desafioimgur.feature.home.repository.HomeRepositoryImpl
 import com.godinho.desafioimgur.feature.home.presentation.HomeViewModel
-import com.godinho.desafioimgur.feature.home.repository.HomeRemoteSource
+import com.godinho.desafioimgur.feature.home.repository.remote.HomeRemoteSource
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob

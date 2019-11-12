@@ -1,4 +1,4 @@
-package com.godinho.desafioimgur.feature.home.repository
+package com.godinho.desafioimgur.feature.home.repository.response
 
 data class ImageResponse(
     val title: String? = null,

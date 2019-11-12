@@ -1,6 +1,10 @@
 package com.godinho.desafioimgur
 
 import com.godinho.desafioimgur.feature.home.repository.*
+import com.godinho.desafioimgur.feature.home.repository.remote.HomeRemoteSource
+import com.godinho.desafioimgur.feature.home.repository.response.GalleryResponse
+import com.godinho.desafioimgur.feature.home.repository.response.ImageResponse
+import com.godinho.desafioimgur.feature.home.repository.response.ResponseObject
 import io.mockk.MockKAnnotations
 import io.mockk.every
 import io.mockk.impl.annotations.MockK
@@ -22,43 +26,47 @@ class HomeRepositoryTest {
         )
     }
 
-    private val emptyImageResponse = ResponseObject(
-        listOf(
-            GalleryResponse(
-                listOf(
-                    ImageResponse()
-                )
-            )
-        )
-    )
-
-    private val emptyGalleryResponse = ResponseObject(
-        listOf(
-            GalleryResponse(emptyList())
-        )
-    )
-
-    private val emptyContentResponse = ResponseObject(emptyList())
-
-
-    private val contentResponse = ResponseObject(
-        listOf(
-            GalleryResponse(
-                listOf(
-                    ImageResponse(
-                        link = LINK,
-                        title = "My cat",
-                        type = VIDEO_MIME_TYPE
-                    ),
-                    ImageResponse(
-                        link = LINK,
-                        title = "My cat 2",
-                        type = HomeRepositoryImpl.IMG_MINE_TYPE
+    private val emptyImageResponse =
+        ResponseObject(
+            listOf(
+                GalleryResponse(
+                    listOf(
+                        ImageResponse()
                     )
                 )
             )
         )
-    )
+
+    private val emptyGalleryResponse =
+        ResponseObject(
+            listOf(
+                GalleryResponse(emptyList())
+            )
+        )
+
+    private val emptyContentResponse =
+        ResponseObject(emptyList())
+
+
+    private val contentResponse =
+        ResponseObject(
+            listOf(
+                GalleryResponse(
+                    listOf(
+                        ImageResponse(
+                            link = LINK,
+                            title = "My cat",
+                            type = VIDEO_MIME_TYPE
+                        ),
+                        ImageResponse(
+                            link = LINK,
+                            title = "My cat 2",
+                            type = HomeRepositoryImpl.IMG_MINE_TYPE
+                        )
+                    )
+                )
+            )
+        )
 
     @Before
     fun setUp() {

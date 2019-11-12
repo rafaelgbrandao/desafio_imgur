@@ -1,5 +1,6 @@
-package com.godinho.desafioimgur.feature.home.repository
+package com.godinho.desafioimgur.feature.home.repository.remote
 
+import com.godinho.desafioimgur.feature.home.repository.response.ResponseObject
 import kotlinx.coroutines.Deferred
 import retrofit2.http.GET
 

@@ -20,14 +20,19 @@ class HomeViewModel(
     fun showErrorDialog(): LiveData<Unit> = lvErrorOnRequest
     private val lvErrorOnRequest = MutableLiveData<Unit>()
 
+    fun showLoadingBar(): LiveData<Boolean> = lvShowLoadingBar
+    private val lvShowLoadingBar = MutableLiveData<Boolean>()
+
     fun onRequestContentList() {
         CoroutineScope(dispatcher + job).launch {
+            lvShowLoadingBar.postValue(true)
             homeRepository.getContentList()?.let {
                 when {
                     it.isEmpty() -> lvEmptyContentList.postValue(Unit)
                     else -> lvCatList.postValue(it)
                 }
             } ?: lvErrorOnRequest.postValue(Unit)
+            lvShowLoadingBar.postValue(false)
         }
     }
 
