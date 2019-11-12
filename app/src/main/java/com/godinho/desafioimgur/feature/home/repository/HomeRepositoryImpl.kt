@@ -1,6 +1,5 @@
 package com.godinho.desafioimgur.feature.home.repository
 
-import android.util.Log
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.lang.Exception
@@ -23,7 +22,6 @@ class HomeRepositoryImpl(private val homeRemoteSource: HomeRemoteSource) : HomeR
             galleries.images?.forEach { images ->
                 images.link?.let {
                     list.add(it)
-                    Log.v("Teste", it)
                 }
             }
         }
